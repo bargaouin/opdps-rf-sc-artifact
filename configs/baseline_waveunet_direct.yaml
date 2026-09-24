@@ -1,0 +1,30 @@
+name: baseline_waveunet_direct
+seed: 1337
+model:
+  kind: waveunet
+  num_classes: 2
+  base_channels: 64
+  channel_mults: [1, 2, 4, 6]
+  emb_dim: 256
+  dropout: 0.03
+  residual_to_input: true
+train:
+  length: 40960
+  batch_size: 16
+  steps: 120000
+  lr: 0.0002
+  weight_decay: 0.0001
+  warmup_steps: 4000
+  min_lr_ratio: 0.05
+  ema_decay: 0.9999
+  grad_clip: 1.0
+  amp_bf16: true
+  save_every: 5000
+  validate_every: 2000
+  val_batches: 8
+  continuous_sinr_prob: 0.20
+  continuous_sinr_min: -15.0
+  continuous_sinr_max: 5.0
+  low_sinr_bias: 0.35
+  common_phase_aug_prob: 0.5
+  loss: {l1_weight: 0.05, spectral_weight: 0.02}

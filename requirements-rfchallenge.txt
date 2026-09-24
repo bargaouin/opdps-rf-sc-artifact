@@ -1,0 +1,7 @@
+# Exact compatibility dependencies recommended by the official RFChallenge 2021 starter.
+# This environment is used only to decode/cache the distributed SigMF dataset.
+git+https://github.com/gnuradio/SigMF.git
+scikit-commpy==0.6.0
+numpy<2
+matplotlib
+tqdm

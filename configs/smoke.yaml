@@ -1,0 +1,64 @@
+name: smoke
+seed: 7
+model:
+  kind: hybrid_operator
+  num_classes: 2
+  base_channels: 8
+  channel_mults: [1, 2, 4]
+  emb_dim: 32
+  operator_blocks: 1
+  max_modes: 16
+  spectral_rank: 4
+  dropout: 0.0
+  residual_to_input: true
+train:
+  length: 256
+  batch_size: 2
+  steps: 2
+  lr: 0.001
+  weight_decay: 0.0
+  warmup_steps: 0
+  min_lr_ratio: 0.1
+  ema_decay: 0.9
+  grad_clip: 1.0
+  amp_bf16: false
+  save_every: 1
+  validate_every: 1
+  val_batches: 1
+  continuous_sinr_prob: 0.0
+  continuous_sinr_min: -12.0
+  continuous_sinr_max: 3.0
+  low_sinr_bias: 0.0
+  common_phase_aug_prob: 0.0
+  loss: {l1_weight: 0.0, spectral_weight: 0.0}
+diffusion:
+  timesteps: 20
+  steps: 2
+  batch_size: 2
+  lr: 0.001
+  weight_decay: 0.0
+  warmup_steps: 0
+  min_lr_ratio: 0.1
+  ema_decay: 0.9
+  grad_clip: 1.0
+  amp_bf16: false
+  save_every: 1
+  validate_every: 1
+  val_batches: 1
+  x0_weight: 0.01
+  model:
+    kind: hybrid_operator
+    num_classes: 2
+    base_channels: 8
+    channel_mults: [1, 2, 4]
+    emb_dim: 32
+    operator_blocks: 1
+    max_modes: 16
+    spectral_rank: 4
+    dropout: 0.0
+    residual_to_input: false
+inference:
+  sampler: ddim
+  solver_steps: 4
+  posterior_samples: 1
+  blend: 1.0

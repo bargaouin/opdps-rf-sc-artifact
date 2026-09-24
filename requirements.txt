@@ -1,0 +1,9 @@
+numpy>=1.24
+scipy>=1.10
+pyyaml>=6.0
+tqdm>=4.66
+matplotlib>=3.7
+pandas>=2.0
+torch>=2.2
+diffusers>=0.35
+pytest>=8.0
